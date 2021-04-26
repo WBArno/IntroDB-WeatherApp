@@ -1,6 +1,7 @@
 /*
  *	WeatherApp Project
- *  Creating Project Tables
+ *  Tables Declaration Script
+ *
  *	ITEC 3200-02
  *  William Arnold
  *  Nelson Urquilla
@@ -32,8 +33,8 @@ create table USER (
     User_ID             Integer         AUTO_INCREMENT,
     Zip_Code            Integer         NOT NULL,       # REF: LOCATION
     UserName            VarChar(10)     NOT NULL,
-    DoB                 Date            NOT NULL,       # Format: mm/dd/yyyy
-    Log_In_Date         Date            NULL,           # Format: mm/dd/yyyy
+    DoB                 Date            NOT NULL,       # Format: yyyy-mm-dd
+    Log_In_Date         Date            NULL,           # Format: yyyy-mm-dd
     constraint          Usr_PK          PRIMARY KEY(User_ID),
     constraint          Usr_Loc_FK      FOREIGN KEY(Zip_Code)       references LOCATION(Zip_Code));
 
@@ -42,8 +43,8 @@ create table USER (
 create table CURRENT_OBSERVATIONS (
     #Multiple observations can occur at the same time (in different locations, so a surrogate key is needed.
     Condition_ID        integer         AUTO_INCREMENT,
-    Observation_Date    date            NOT NULL,       # Format: mm/dd/yyyy
-    Observation_Time    time            NOT NULL,       # Format: HH:MM:SS.###
+    Observation_Date    date            NOT NULL,       # Format: yyyy-mm-dd
+    Observation_Time    time            NOT NULL,       # Format: HH:MM:SS
     Condition_Desc      VarChar(100)    NULL,           # Text description of current conditions
     Temperature         integer         NOT NULL,       # Format: ### (DegF)
     Humidity            integer         NOT NULL,       # Format: ### (%)
