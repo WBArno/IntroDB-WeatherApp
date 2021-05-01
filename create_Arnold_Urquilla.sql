@@ -9,7 +9,7 @@
 
 
 # Uncomment for repeat runs.
-# drop database WeatherApp;
+drop database WeatherApp;
 
 # Establish the Database
 create database WeatherApp;
@@ -66,8 +66,8 @@ create table WEATHER_FORECAST (
     Forecast_ID         integer         AUTO_INCREMENT,
     Condition_ID        integer         NOT NULL,       # REF: CURRENT_OBSERVATIONS
     Meteorologist_ID    integer         NOT NULL,       # REF: METEOROLOGIST
-    One_Day_Forecast    VarChar(100)    NULL,           # Text description of an hourly forecast
-    Ten_Day_Forecast    VarChar(100)    NOT NULL,       # Text description of a 10-day forecast
+    Todays_Forecast     VarChar(100)    NULL,           # Text description of an hourly forecast
+    Five_Day_Forecast    VarChar(100)   NOT NULL,       # Text description of a 10-day forecast
     constraint          For_PK          PRIMARY KEY(Forecast_ID, Condition_ID),
     constraint          For_Obs_FK      FOREIGN KEY(Condition_ID)       references  CURRENT_OBSERVATIONS(Condition_ID),
     constraint          For_Met_FK      FOREIGN KEY(Meteorologist_ID)   references  METEOROLOGIST(Meteorologist_ID));
