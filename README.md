@@ -7,7 +7,6 @@ Nelson Urquilla
 
 ---
 TODO:
-- Create INSERT file with values
 - Look into loading a CSV into MySQL from Git (weather data). 
 - Finish writing README
 ---
