@@ -9,7 +9,7 @@
 
 
 # Uncomment for repeat runs.
-drop database WeatherApp;
+# drop database WeatherApp;
 
 # Establish the Database
 create database WeatherApp;
