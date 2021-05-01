@@ -43,12 +43,14 @@ create table USER (
 create table CURRENT_OBSERVATIONS (
     #Multiple observations can occur at the same time (in different locations, so a surrogate key is needed.
     Condition_ID        integer         AUTO_INCREMENT,
+    Zip_Code            integer         NOT NULL,       # REF: LOCATION
     Observation_Date    date            NOT NULL,       # Format: yyyy-mm-dd
     Observation_Time    time            NOT NULL,       # Format: HH:MM:SS
     Condition_Desc      VarChar(100)    NULL,           # Text description of current conditions
     Temperature         integer         NOT NULL,       # Format: ### (DegF)
     Humidity            integer         NOT NULL,       # Format: ### (%)
-    constraint          Obs_PK          PRIMARY KEY(Condition_ID));
+    constraint          Obs_PK          PRIMARY KEY(Condition_ID, Zip_Code),
+    constraint          Loc_Obs_FK      FOREIGN KEY(Zip_Code)       references LOCATION(ZIP_CODE));
 
 
 # Meteorologist Information
@@ -64,8 +66,8 @@ create table WEATHER_FORECAST (
     Forecast_ID         integer         AUTO_INCREMENT,
     Condition_ID        integer         NOT NULL,       # REF: CURRENT_OBSERVATIONS
     Meteorologist_ID    integer         NOT NULL,       # REF: METEOROLOGIST
-    Hourly_Forecast     VarChar(100)    NULL,           # Text description of an hourly forecast
-    10_Day_Forecast     VarChar(100)    NOT NULL,       # Text description of a 10-day forecast
+    One_Day_Forecast    VarChar(100)    NULL,           # Text description of an hourly forecast
+    Ten_Day_Forecast    VarChar(100)    NOT NULL,       # Text description of a 10-day forecast
     constraint          For_PK          PRIMARY KEY(Forecast_ID, Condition_ID),
     constraint          For_Obs_FK      FOREIGN KEY(Condition_ID)       references  CURRENT_OBSERVATIONS(Condition_ID),
     constraint          For_Met_FK      FOREIGN KEY(Meteorologist_ID)   references  METEOROLOGIST(Meteorologist_ID));
